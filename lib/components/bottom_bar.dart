@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:apex_companion/pages/home_page.dart';
+import 'package:apex_companion/pages/leaderboard_page.dart';
+import 'package:apex_companion/pages/player_stats_page.dart';
 import 'package:apex_companion/pages/settings_page.dart';
-import 'package:apex_companion/pages/profile_page.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -11,7 +12,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  List pages = [HomePage(), SettingsPage(), ProfilePage()];
+  final List<Widget> pages = [Home(), Leaderboard(), PlayerStats(), Settings()];
 
   int selectedIndex = 0;
 
@@ -51,36 +52,40 @@ class _BottomBarState extends State<BottomBar> {
 
       bottomNavigationBar: Container(
         height: 70,
-        margin: EdgeInsets.all(30),
+        margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 26),
         child: ClipRRect(
-          borderRadius: BorderRadiusGeometry.circular(46),
-          child: MediaQuery.removePadding(
-            context: context,
-            removeBottom: true,
-            child: BottomNavigationBar(
-              currentIndex: selectedIndex,
-              onTap: _onitemtapped,
-              backgroundColor: Colors.grey.shade800,
-              unselectedItemColor: Colors.grey,
-              selectedItemColor: Colors.redAccent,
-
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: "Home",
-                  //
-                ),
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: "Settings",
-                ),
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: "Profile",
-                ),
-              ],
+          borderRadius: BorderRadius.circular(46),
+          child: Theme(
+            data: Theme.of(context).copyWith(canvasColor: Colors.grey.shade800),
+            child: MediaQuery.removePadding(
+              context: context,
+              removeBottom: true,
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                currentIndex: selectedIndex,
+                onTap: _onitemtapped,
+                backgroundColor: Colors.grey.shade800,
+                unselectedItemColor: Colors.grey,
+                selectedItemColor: Colors.redAccent,
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: "Home",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.view_column),
+                    label: "Leaderboard",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.person),
+                    label: "Player Stats",
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: "Settings",
+                  ),
+                ],
+              ),
             ),
           ),
         ),
