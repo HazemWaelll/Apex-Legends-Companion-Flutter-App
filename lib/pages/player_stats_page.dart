@@ -8,9 +8,15 @@ class PlayerStats extends StatefulWidget {
 }
 
 class _PlayerStatsState extends State<PlayerStats> {
-  TextEditingController usernameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
 
   String? selectedPlatform;
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
