@@ -26,7 +26,7 @@ class _PlayerStatsState extends State<PlayerStats> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 10),
 
             // username textfield
             Padding(
@@ -111,6 +111,7 @@ class _PlayerStatsState extends State<PlayerStats> {
 
             SizedBox(height: 60),
 
+            // get player stats button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GestureDetector(
@@ -124,7 +125,7 @@ class _PlayerStatsState extends State<PlayerStats> {
                   ),
                   child: Center(
                     child: Text(
-                      "Get Data",
+                      "Get Player Stats",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

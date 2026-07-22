@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:apex_companion/pages/home_page.dart';
-import 'package:apex_companion/pages/leaderboard_page.dart';
-import 'package:apex_companion/pages/player_stats_page.dart';
-import 'package:apex_companion/pages/settings_page.dart';
+import 'package:apex_companion/views/home_page.dart';
+import 'package:apex_companion/views/leaderboard_page.dart';
+import 'package:apex_companion/views/player_stats_page.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -12,15 +11,9 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  final List<Widget> pages = [Home(), Leaderboard(), PlayerStats(), Settings()];
+  final List<Widget> pages = [Home(), Leaderboard(), PlayerStats()];
 
   int selectedIndex = 0;
-
-  void _onitemtapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +45,7 @@ class _BottomBarState extends State<BottomBar> {
 
       bottomNavigationBar: Container(
         height: 70,
-        margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 26),
+        margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 70),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(46),
           child: Theme(
@@ -63,7 +56,9 @@ class _BottomBarState extends State<BottomBar> {
               child: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 currentIndex: selectedIndex,
-                onTap: _onitemtapped,
+                onTap: (index) => setState(() {
+                  selectedIndex = index;
+                }),
                 backgroundColor: Colors.grey.shade800,
                 unselectedItemColor: Colors.grey,
                 selectedItemColor: Colors.redAccent,
@@ -79,10 +74,6 @@ class _BottomBarState extends State<BottomBar> {
                   BottomNavigationBarItem(
                     icon: Icon(Icons.person),
                     label: "Player Stats",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: "Settings",
                   ),
                 ],
               ),
